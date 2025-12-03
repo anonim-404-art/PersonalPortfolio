@@ -1,1 +1,17 @@
 @import "tailwindcss";
+
+.font-shokhrukh {
+  font-family: "Audiowide", sans-serif;
+}
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.text_style {
+  @apply p-1.5
+  text-white
+  rounded-xl
+  bg-[#4255A0];
+}

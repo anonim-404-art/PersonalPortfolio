@@ -6,8 +6,12 @@
     <title>Document</title>
     <link rel="stylesheet" href="output.css" />
     <link rel="stylesheet" href="style.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Audiowide&display=swap"
+      rel="stylesheet"
+    />
   </head>
-  <body class="">
+  <body class="bg-[#0F1C3F]">
     <div id="follow" class="w-8 h-8 bg-[#0C1530] rounded-full fixed z-10"></div>
     <div
       id="follower"
@@ -22,15 +26,17 @@
         class="absolute w-screen h-dvh top-0 left-0 text-white z-20 flex items-center justify-center"
       >
         <div
-          class="w-[400px] h-[350px] items-center text-center flex flex-col justify-between"
+          class="w-[450px] h-[380px] items-center text-center flex flex-col justify-between"
         >
           <h1
-            class="text-7xl font-bold bg-gradient-to-r from-purple-500 via-blue-500 to-pink-500 bg-clip-text text-transparent"
+            class="text-8xl font-bold bg-gradient-to-r from-purple-500 via-blue-500 to-pink-500 bg-clip-text text-transparent"
           >
             Hello, I`m
           </h1>
-          <h1 class="text-5xl font-bold">SHOKHRUKH</h1>
-          <p class="text-xl text-gray-500">
+          <h1 class="text-5xl font-extrabold tracking-wider font-shokhrukh">
+            SHOKHRUKH
+          </h1>
+          <p class="text-2xl text-gray-500">
             A passionate
             <span
               class="font-bold bg-gradient-to-r from-purple-500 via-blue-500 to-pink-500 bg-clip-text text-transparent"
@@ -61,7 +67,59 @@
         </div>
       </div>
     </div>
-    <div class="h-[60vh] w-screen bg-[#1d2b53]"></div>
+    <div
+      class="h-[60vh] w-screen flex items-center justify-center bg-[#1d2b53]"
+    >
+      <div class="w-[80%] h-[80%] flex flex-col items-center justify-between">
+        <h1 class="text-3xl font-bold bg-gradient-to-r from-purple-500 via-blue-500 to-pink-500 bg-clip-text text-transparent"">About me</h1>
+        <div class="flex w-full h-[90%] items-center justify-between">
+          <img
+            class="w-[400px] h-[400px] rounded-full border-amber-300"
+            src="https://t3.ftcdn.net/jpg/02/99/04/20/360_F_299042079_vGBD7wIlSeNl7vOevWHiL93G4koMM967.jpg"
+            alt=""
+          />
+          <div class="flex flex-col w-[65%] h-3/4 justify-between">
+            <h1 class="text-white text-2xl">Who am I?</h1>
+            <h3 class="text-gray-400">
+              Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+              Assumenda aut provident excepturi ullam. At, perspiciatis eos
+              nesciunt a sit exercitationem quia accusantium inventore officiis
+              in asperiores amet officia dicta ea veniam. Libero ab, veritatis
+              itaque officia explicabo iure asperiores? Repellendus aperiam
+              tempora corrupti explicabo ratione id voluptatem nam totam eos.
+            </h3>
+            <div id="skill_content" class="flex w-full justify-between">
+              <div
+                class="rounded-xl bg-[#314068] flex flex-col border-l-7 border-blue-600 p-3.5 w-72"
+              >
+                <p class="text-blue-400 font-bold">Frontend</p>
+                <p class="text-gray-400">Rect, ihih, ihh</p>
+              </div>
+              <div
+                class="rounded-xl bg-[#314068] flex flex-col border-l-7 border-blue-600 p-3.5 w-72"
+              >
+                <p class="text-blue-400 font-bold">Frontend</p>
+                <p class="text-gray-400">Rect, ihih, ihh</p>
+              </div>
+              <div
+                class="rounded-xl bg-[#314068] flex flex-col border-l-7 border-blue-600 p-3.5 w-72"
+              >
+                <p class="text-blue-400 font-bold">Frontend</p>
+                <p class="text-gray-400">Rect, ihih, ihh</p>
+              </div>
+            </div>
+            <div id="skills" class="flex gap-6">
+              <p class="text_style">JavaScript</p>
+              <p class="text_style">Python</p>
+              <p class="text_style">postgreSQL</p>
+              <p class="text_style">HTML5</p>
+              <p class="text_style">git</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <script src="main.js"></script>
   </body>
 </html>
