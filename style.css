@@ -15,3 +15,9 @@ body {
   rounded-xl
   bg-[#4255A0];
 }
+a,
+p,
+img,
+h1 {
+  @apply z-10;
+}
