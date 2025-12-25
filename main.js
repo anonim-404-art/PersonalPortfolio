@@ -101,7 +101,7 @@ function connect() {
       let dy = particleArray[a].y - particleArray[b].y;
       let distance = dx * dx + dy * dy;
 
-      let maxDistance = 100; // adjust this for more/fewer connections
+      let maxDistance = 120; // adjust this for more/fewer connections
 
       if (distance < maxDistance * maxDistance) {
         opacityValue = 1 - distance / 20000;
@@ -125,3 +125,33 @@ window.addEventListener("resize", () => {
 
 init();
 animate();
+
+// Skill Tab Logic
+const tabs = [
+  document.getElementById("tab-1"),
+  document.getElementById("tab-2"),
+  document.getElementById("tab-3"),
+];
+const contents = [
+  document.getElementById("item_1"),
+  document.getElementById("item_2"),
+  document.getElementById("item_3"),
+];
+
+tabs.forEach((tab, index) => {
+  tab.addEventListener("click", () => {
+    tabs.forEach((t) =>
+      t.classList.replace("border-blue-600", "border-gray-500")
+    );
+    tab.classList.replace("border-gray-500", "border-blue-600");
+    contents.forEach((content, i) => {
+      if (i === index) {
+        content.style.left = "0";
+      } else if (i < index) {
+        content.style.left = "-100%";
+      } else {
+        content.style.left = "100%";
+      }
+    });
+  });
+});
