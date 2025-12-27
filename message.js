@@ -1,11 +1,10 @@
 const form = document.getElementById("form");
-const submitBtn = form.querySelector('button[type="submit"]');
+const submitBtn = document.getElementById("submit-btn_form");
 
 form.addEventListener("submit", async (e) => {
   e.preventDefault();
 
   const formData = new FormData(form);
-  formData.append("access_key", "f6bac5a8-8a14-419e-abc1-c1129b541198");
 
   const originalText = submitBtn.textContent;
 
