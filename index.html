@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -14,6 +14,25 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
     />
+    <style>
+      .custom-scrollbar::-webkit-scrollbar {
+        width: 8px;
+      }
+
+      .custom-scrollbar::-webkit-scrollbar-track {
+        background: #1d2b53;
+        border-radius: 10px;
+      }
+
+      .custom-scrollbar::-webkit-scrollbar-thumb {
+        background: linear-gradient(to bottom, #a855f7, #3b82f6);
+        border-radius: 10px;
+      }
+
+      .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+        background: #ec4899;
+      }
+    </style>
   </head>
   <body class="bg-[#0F1C3F] overflow-x-hidden">
     <div
@@ -137,7 +156,7 @@
           Featured Projects
         </h1>
         <div
-          class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 w-full"
+          class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 w-full max-h-[530px] overflow-y-auto pr-2 custom-scrollbar"
         >
           <div
             class="bg-[#1d2b53] p-6 rounded-2xl flex flex-col gap-4 border border-[#324287] hover:border-blue-500 transition-all"
@@ -246,6 +265,41 @@
               >
             </div>
           </div>
+          <div
+            class="bg-[#1d2b53] p-6 rounded-2xl flex flex-col gap-4 border border-[#324287] hover:border-blue-500 transition-all"
+          >
+            <img
+              class="w-full h-48 rounded-xl object-cover"
+              src="image/244_1x_shots_so.png"
+              alt="Project"
+            />
+            <h1 class="text-white text-2xl font-bold">Cinetic</h1>
+            <p class="text-gray-400">
+              Cinetic: A premium cinematic experience offering unlimited movies
+              and TV shows in 4K Ultra HD. Features a sleek, responsive
+              interface with real-time movie discovery and admin controls.
+            </p>
+            <div class="flex gap-2 flex-wrap">
+              <span class="text_style">JavaScript</span>
+              <span class="text_style">HTML & CSS </span>
+              <span class="text_style">Web3forms API</span>
+            </div>
+            <hr class="border-[#324287]" />
+            <div class="flex gap-6 text-white font-medium">
+              <a
+                target="_blank"
+                href="https://github.com/anonim-404-art/moviefestival.git"
+                class="hover:text-blue-400"
+                ><i class="fa-solid fa-up-right-from-square"></i> Demo</a
+              >
+              <a
+                target="_blank"
+                href="https://anonim-404-art.github.io/moviefestival/"
+                class="hover:text-purple-400"
+                ><i class="fa-brands fa-github"></i> Code</a
+              >
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -284,7 +338,7 @@
                 <i
                   class="fa-solid fa-phone text-red-400 bg-[#1d2b53] p-4 rounded-full border border-red-500"
                 ></i>
-                <p class="font-semibold">+60 393982638</p>
+                <p class="font-semibold">+60 11 6816 8759</p>
               </div>
             </div>
           </div>
