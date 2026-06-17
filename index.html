@@ -1,407 +1,396 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Portfolio</title>
-    <link rel="stylesheet" href="output.css" />
-    <link rel="stylesheet" href="style.css" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Audiowide&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-    />
-    <style>
-      .custom-scrollbar::-webkit-scrollbar {
-        width: 8px;
-      }
 
-      .custom-scrollbar::-webkit-scrollbar-track {
-        background: #1d2b53;
-        border-radius: 10px;
-      }
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SHOKHRUKH | FullStack Developer Portfolio</title>
+  <meta name="description"
+    content="Portfolio of Shokhrukh, a passionate FullStack Developer crafting interactive digital experiences with Node.js, Python, Flask, and Tailwind." />
 
-      .custom-scrollbar::-webkit-scrollbar-thumb {
-        background: linear-gradient(to bottom, #a855f7, #3b82f6);
-        border-radius: 10px;
-      }
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;600;700;800&family=Space+Mono:wght@400;700&display=swap"
+    rel="stylesheet">
 
-      .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-        background: #ec4899;
-      }
-    </style>
-  </head>
-  <body class="bg-[#0F1C3F] overflow-x-hidden">
-    <div
-      id="follow"
-      class="hidden md:block w-8 h-8 bg-[#0C1530] rounded-full fixed z-50 pointer-events-none"
-    ></div>
-    <div
-      id="follower"
-      class="hidden md:block w-4 h-4 bg-[#070B19] transition duration-75 rounded-full fixed z-50 pointer-events-none"
-    ></div>
+  <!-- FontAwesome for Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 
-    <div id="main-container" class="h-dvh w-screen relative overflow-hidden">
-      <canvas
-        id="canvas-main"
-        class="absolute top-0 left-0 bg-[#0F1C3F] w-screen h-dvh"
-      ></canvas>
-      <div
-        class="absolute w-screen h-dvh top-0 left-0 text-white z-20 flex items-center justify-center p-6"
-      >
-        <div
-          class="max-w-[500px] w-full items-center text-center flex flex-col gap-8"
-        >
+  <!-- Core Style -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body class="bg-[#030014] text-zinc-400 overflow-x-hidden selection:bg-white/10 selection:text-white">
+
+  <!-- Custom Cursor Nodes -->
+  <div class="custom-cursor-dot hidden md:block" id="cursor-dot"></div>
+  <div class="custom-cursor-circle hidden md:block" id="cursor-circle"></div>
+
+  <!-- Background 3D Canvas -->
+  <canvas id="canvas-3d"></canvas>
+
+  <!-- Floating Project Image Preview Overlay -->
+  <div id="project-preview-container"
+    class="pointer-events-none fixed w-80 h-52 rounded-xl overflow-hidden opacity-0 scale-90 z-40 transition-all duration-300 ease-out"
+    style="top: 0; left: 0;">
+    <img id="project-preview-img" class="w-full h-full object-cover" src="" alt="Preview" />
+    <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+  </div>
+
+  <!-- Toast Notification Banner for Form Feedback -->
+  <div id="toast-notif"
+    class="toast-notification glass-panel px-6 py-4 rounded-2xl flex items-center gap-4 text-sm font-semibold max-w-sm">
+    <div id="toast-icon-bg" class="w-8 h-8 rounded-full flex items-center justify-center">
+      <i id="toast-icon" class="fa-solid"></i>
+    </div>
+    <p id="toast-msg" class="text-zinc-100"></p>
+  </div>
+
+  <!-- Minimal Top Header Bar -->
+  <header
+    class="fixed top-0 left-0 w-full z-50 border-b border-white/5 bg-space-black/80 backdrop-blur-md px-6 md:px-12 py-5 flex items-center justify-between">
+    <a href="#home"
+      class="font-display font-extrabold text-lg tracking-widest hover:opacity-80 transition-opacity text-white">
+      SHOKHRUKH<span class="text-neon-blue">.</span>
+    </a>
+    <nav class="hidden md:flex items-center gap-8 font-mono text-xs tracking-wider">
+      <a href="#home" class="nav-link active">// HOME</a>
+      <a href="#about" class="nav-link">// ABOUT</a>
+      <a href="#projects" class="nav-link">// PROJECTS</a>
+      <a href="#contact" class="nav-link">// CONTACT</a>
+    </nav>
+    <a href="#contact"
+      class="font-mono text-[10px] tracking-wider px-4 py-2 border border-white/15 rounded-full hover:bg-white hover:text-black hover:border-white transition-all uppercase">
+      Let's talk
+    </a>
+  </header>
+
+  <!-- Main Container -->
+  <main class="relative z-10 w-full">
+
+    <!-- Hero Section -->
+    <section id="home"
+      class="min-h-screen w-full flex flex-col justify-between pt-36 pb-12 px-6 md:px-12 relative overflow-hidden">
+      <div class="max-w-7xl w-full mx-auto my-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center relative z-10">
+
+        <!-- Text Columns (Span 8) -->
+        <div class="lg:col-span-8 flex flex-col items-start text-left gap-6 md:gap-8">
+          <div class="font-mono text-xs tracking-widest text-zinc-500 uppercase flex items-center gap-2">
+            <span>// CODING INVENTIVE REALMS</span>
+          </div>
+
           <h1
-            class="text-6xl md:text-8xl font-bold bg-gradient-to-r from-purple-500 via-blue-500 to-pink-500 bg-clip-text text-transparent"
-          >
-            Hello, I'm
+            class="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-display font-extrabold leading-none tracking-tight text-white uppercase">
+            CREATIVE <br>
+            <span class="text-outline text-outline-hover">DEVELOPER</span>
           </h1>
-          <h1
-            class="text-4xl md:text-5xl font-extrabold tracking-wider font-shokhrukh"
-          >
-            SHOKHRUKH
-          </h1>
-          <p class="text-xl md:text-2xl text-gray-500">
-            A passionate
-            <span
-              class="font-bold bg-gradient-to-r from-purple-500 via-blue-500 to-pink-500 bg-clip-text text-transparent"
-              >FullStack Developer</span
-            >
-            crafting interactive digital experiences
+
+          <p class="text-sm sm:text-base md:text-lg text-zinc-400 max-w-xl leading-relaxed">
+            I build advanced backend architectures and fluid digital user interfaces. Bridging deep systems engineering
+            with clean, human-centric interactions.
           </p>
-          <div class="flex flex-col md:flex-row justify-around w-full gap-4">
-            <a
-              class="z-30 w-full md:w-5/12 h-12 rounded-2xl flex items-center justify-center border-2 border-[#6F50A5] overflow-hidden relative group"
-              href="#projects"
-            >
-              <span
-                class="absolute top-0 left-0 w-0 h-full bg-[#6F50A5] transition-all duration-500 group-hover:w-full z-0"
-              ></span>
-              <span class="relative z-30">View My Work</span>
+
+          <div class="flex flex-row items-center gap-6 mt-4">
+            <a href="#projects"
+              class="font-mono text-xs px-6 py-3 border border-white/20 hover:border-white rounded-full bg-white/5 hover:bg-white hover:text-black transition-all">
+              Explore projects
             </a>
-            <a
-              class="z-30 w-full md:w-5/12 h-12 rounded-2xl flex items-center justify-center border-2 border-[#6F50A5] overflow-hidden relative group"
-              href="#contact"
-            >
-              <span
-                class="absolute top-0 left-0 w-0 h-full bg-[#6F50A5] transition-all duration-500 group-hover:w-full z-0"
-              ></span>
-              <span class="relative z-30">Contact Me</span>
+            <a href="#contact"
+              class="font-mono text-xs text-white hover:underline decoration-neon-blue underline-offset-4">
+              Get in touch →
             </a>
           </div>
         </div>
-      </div>
-    </div>
 
-    <div
-      class="min-h-[70vh] py-20 w-screen flex items-center justify-center bg-[#1d2b53]"
-    >
-      <div class="w-[90%] md:w-[80%] flex flex-col items-center gap-12">
-        <h1
-          class="text-3xl font-bold bg-gradient-to-r from-purple-500 via-blue-500 to-pink-500 bg-clip-text text-transparent"
-        >
-          About me
-        </h1>
+        <!-- Empty Canvas Spacer for framing the 3D model (Span 4) -->
         <div
-          class="flex flex-col lg:flex-row w-full items-center justify-between gap-12"
-        >
-          <img
-            class="w-64 h-64 md:w-[400px] md:h-[400px] rounded-full border-blue-600 border-4 object-cover"
-            src="image/photo_2025-12-26_13-14-28.jpg"
-            alt="Profile"
-          />
-          <div
-            class="flex flex-col w-full lg:w-[65%] gap-6 text-center lg:text-left"
-          >
-            <h1 class="text-white text-3xl">Who am I?</h1>
-            <h3 class="text-gray-400 leading-relaxed text-lg">
-              I am a developer focused on building functional and beautiful
-              applications. I love solving complex problems with simple code.
+          class="lg:col-span-4 h-[300px] lg:h-[450px] w-full flex items-center justify-center pointer-events-none relative">
+          <div class="absolute inset-0 bg-radial from-violet-600/5 to-transparent blur-3xl pointer-events-none"></div>
+        </div>
+
+      </div>
+
+      <!-- Infinite Marquee Glider -->
+      <div
+        class="w-full border-y border-white/5 py-4 bg-white/[0.003] flex overflow-hidden select-none mt-12 pointer-events-none">
+        <div
+          class="animate-marquee whitespace-nowrap flex gap-16 font-mono text-[10px] text-zinc-600 uppercase tracking-widest">
+          <span>DEVELOPMENT // ARCHITECTURE // SYSTEMS DESIGN // NODE.JS // PYTHON // WEBGL // THREE.JS //</span>
+          <span>DEVELOPMENT // ARCHITECTURE // SYSTEMS DESIGN // NODE.JS // PYTHON // WEBGL // THREE.JS //</span>
+          <span>DEVELOPMENT // ARCHITECTURE // SYSTEMS DESIGN // NODE.JS // PYTHON // WEBGL // THREE.JS //</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- About Me Section -->
+    <section id="about"
+      class="min-h-screen py-32 w-full flex items-center justify-center px-6 md:px-12 bg-white/[0.005] border-y border-white/5">
+      <div class="max-w-7xl w-full flex flex-col gap-16">
+
+        <div class="flex flex-col gap-2">
+          <p class="font-mono text-xs text-zinc-600 tracking-widest uppercase">// 01. IDENTITY</p>
+          <h2 class="text-2xl sm:text-4xl md:text-5xl font-display font-bold tracking-tight text-white">Who am I?</h2>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
+
+          <!-- Photo Frame (Span 4) -->
+          <div class="lg:col-span-4 flex justify-start">
+            <div class="w-full max-w-[340px] aspect-square overflow-hidden border border-white/10 p-2 bg-white/[0.02]">
+              <img class="w-full h-full object-cover" src="image/main.jpg" alt="Shokhrukh" />
+            </div>
+          </div>
+
+          <!-- Text & Technical Stack (Span 8) -->
+          <div class="lg:col-span-8 flex flex-col gap-10">
+            <h3 class="text-2xl md:text-3xl font-display font-bold text-white leading-snug">
+              Building robust codebases, designing modular user interfaces.
             </h3>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div
-                class="rounded-xl bg-[#314068] border-l-8 border-blue-600 p-5 text-left"
-              >
-                <p class="text-blue-400 font-bold">Frontend</p>
-                <p class="text-gray-300">
-                  HTML5, Tailwind CSS, JavaScript, Responsive Design
-                </p>
+            <p class="text-zinc-400 leading-relaxed text-base">
+              Focused on building elegant, performant, and scale-ready digital solutions. I enjoy solving complex
+              architectural challenges with simple, maintainable code.
+            </p>
+
+            <!-- Skills catalog grid (No arbitrary progress bars) -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 border-t border-white/10 pt-10">
+              <div class="flex flex-col gap-3">
+                <h4 class="font-mono text-xs text-white uppercase tracking-wider">// FRONTEND SKILLS</h4>
+                <p class="text-sm text-zinc-500 leading-relaxed">JavaScript (ES6+), Tailwind CSS, HTML5, Responsive
+                  layouts, CSS Preprocessing</p>
               </div>
-              <div
-                class="rounded-xl bg-[#314068] border-l-8 border-purple-600 p-5 text-left"
-              >
-                <p class="text-purple-400 font-bold">Backend</p>
-                <p class="text-gray-300">
-                  Node.js, Python, Databases (PostgreSQL)
-                </p>
+              <div class="flex flex-col gap-3">
+                <h4 class="font-mono text-xs text-white uppercase tracking-wider">// BACKEND SYSTEMS</h4>
+                <p class="text-sm text-zinc-500 leading-relaxed">Node.js, Express, Python, Flask, PostgreSQL,
+                  SQLAlchemy, REST APIs</p>
               </div>
-              <div
-                class="rounded-xl bg-[#314068] border-l-8 border-pink-600 p-5 text-left md:col-span-2"
-              >
-                <p class="text-pink-400 font-bold">Languages</p>
-                <p class="text-gray-300">
-                  <i class="fa-solid fa-earth-americas mr-2"></i> English C1,
-                  Russian C1, Uzbek Native
-                </p>
+              <div class="flex flex-col md:col-span-2 gap-3 border-t border-white/5 pt-6">
+                <h4 class="font-mono text-xs text-white uppercase tracking-wider">// LANGUAGES</h4>
+                <div class="flex flex-wrap gap-x-8 gap-y-2 text-sm text-zinc-500">
+                  <span>English <span class="text-zinc-600">// Professional (C1)</span></span>
+                  <span>Russian <span class="text-zinc-600">// Fluent (C1)</span></span>
+                  <span>Uzbek <span class="text-zinc-600">// Native Speaker</span></span>
+                </div>
               </div>
             </div>
           </div>
+
         </div>
       </div>
-    </div>
+    </section>
 
-    <div
-      id="projects"
-      class="min-h-[80vh] w-screen flex items-center justify-center"
-    >
-      <div class="w-[90%] md:w-[80%] flex flex-col items-center gap-12">
-        <h1
-          class="text-3xl font-bold bg-gradient-to-r from-purple-500 via-blue-500 to-pink-500 bg-clip-text text-transparent"
-        >
-          Featured Projects
-        </h1>
-        <div
-          class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 w-full max-h-[530px] overflow-y-auto pr-2 custom-scrollbar"
-        >
-          <div
-            class="bg-[#1d2b53] p-6 rounded-2xl flex flex-col gap-4 border border-[#324287] hover:border-blue-500 transition-all"
-          >
-            <img
-              class="w-full h-48 rounded-xl object-cover"
-              src="image/Gemini_Generated_Image_3uw2e33uw2e33uw2.png"
-              alt="Project"
-            />
-            <h1 class="text-white text-2xl font-bold">Personal Portfolio</h1>
-            <p class="text-gray-400">
-              A terminal-inspired gateway into my code and creative logic. Built
-              to bridge the gap between complex backend architecture and sleek,
-              modern frontend design.
-            </p>
-            <div class="flex gap-2 flex-wrap">
-              <span class="text_style">Tailwind CSS</span>
-              <span class="text_style">JavaScript (ES6+)</span>
-              <span class="text_style">Responsive Design</span>
-              <span class="text_style">Vite</span>
-            </div>
-            <hr class="border-[#324287]" />
-            <div class="flex gap-6 text-white font-medium">
-              <a
-                target="_blank"
-                href="https://anonim-404-art.github.io/PersonalPortfolio/"
-                class="hover:text-blue-400"
-                ><i class="fa-solid fa-up-right-from-square"></i> Demo</a
-              >
-              <a
-                target="_blank"
-                href="https://github.com/anonim-404-art/PersonalPortfolio.git"
-                class="hover:text-purple-400"
-                ><i class="fa-brands fa-github"></i> Code</a
-              >
-            </div>
-          </div>
-          <div
-            class="bg-[#1d2b53] p-6 rounded-2xl flex flex-col gap-4 border border-[#324287] hover:border-blue-500 transition-all"
-          >
-            <img
-              class="w-full h-48 rounded-xl object-cover"
-              src="image/355_1x_shots_so.png"
-              alt="Project"
-            />
-            <h1 class="text-white text-2xl font-bold">LUXE</h1>
-            <p class="text-gray-400">
-              A robust e-commerce ecosystem featuring a dynamic product catalog,
-              multi-role authentication (Admin/Seller/Buyer), and real-time
-              order processing.
-            </p>
-            <div class="flex gap-2 flex-wrap">
-              <span class="text_style">Flask</span>
-              <span class="text_style">PostgreSQL</span>
-              <span class="text_style">SQLAlchemy</span>
-              <span class="text_style">Python</span>
-            </div>
-            <hr class="border-[#324287]" />
-            <div class="flex gap-6 text-white font-medium">
-              <a
-                target="_blank"
-                href="https://e-commerce-production-4be2.up.railway.app"
-                class="hover:text-blue-400"
-                ><i class="fa-solid fa-up-right-from-square"></i> Demo</a
-              >
-              <a
-                target="_blank"
-                href="https://github.com/anonim-404-art/E-Commerce.git"
-                class="hover:text-purple-400"
-                ><i class="fa-brands fa-github"></i> Code</a
-              >
-            </div>
-          </div>
-          <div
-            class="bg-[#1d2b53] p-6 rounded-2xl flex flex-col gap-4 border border-[#324287] hover:border-blue-500 transition-all"
-          >
-            <img
-              class="w-full h-48 rounded-xl object-cover"
-              src="image/unnamed.jpg"
-              alt="Project"
-            />
-            <h1 class="text-white text-2xl font-bold">Weather Web</h1>
-            <p class="text-gray-400">
-              A responsive JS/Tailwind dashboard providing real-time weather,
-              AQI, and UV data with precise timezone-corrected local timing for
-              any global city.
-            </p>
-            <div class="flex gap-2 flex-wrap">
-              <span class="text_style">JavaScript</span>
-              <span class="text_style">Tailwind CSS</span>
-              <span class="text_style">OpenWeather API</span>
-            </div>
-            <hr class="border-[#324287]" />
-            <div class="flex gap-6 text-white font-medium">
-              <a
-                target="_blank"
-                href="https://anonim-404-art.github.io/WeatherWeb/"
-                class="hover:text-blue-400"
-                ><i class="fa-solid fa-up-right-from-square"></i> Demo</a
-              >
-              <a
-                target="_blank"
-                href="https://github.com/anonim-404-art/WeatherWeb"
-                class="hover:text-purple-400"
-                ><i class="fa-brands fa-github"></i> Code</a
-              >
-            </div>
-          </div>
-          <div
-            class="bg-[#1d2b53] p-6 rounded-2xl flex flex-col gap-4 border border-[#324287] hover:border-blue-500 transition-all"
-          >
-            <img
-              class="w-full h-48 rounded-xl object-cover"
-              src="image/244_1x_shots_so.png"
-              alt="Project"
-            />
-            <h1 class="text-white text-2xl font-bold">Cinetic</h1>
-            <p class="text-gray-400">
-              Cinetic: A premium cinematic experience offering unlimited movies
-              and TV shows in 4K Ultra HD. Features a sleek, responsive
-              interface with real-time movie discovery and admin controls.
-            </p>
-            <div class="flex gap-2 flex-wrap">
-              <span class="text_style">JavaScript</span>
-              <span class="text_style">HTML & CSS </span>
-              <span class="text_style">Web3forms API</span>
-            </div>
-            <hr class="border-[#324287]" />
-            <div class="flex gap-6 text-white font-medium">
-              <a
-                target="_blank"
-                href="https://anonim-404-art.github.io/moviefestival/"
-                class="hover:text-blue-400"
-                ><i class="fa-solid fa-up-right-from-square"></i> Demo</a
-              >
-              <a
-                target="_blank"
-                href="https://github.com/anonim-404-art/moviefestival.git"
-                class="hover:text-purple-400"
-                ><i class="fa-brands fa-github"></i> Code</a
-              >
-            </div>
-          </div>
+    <!-- Projects Section -->
+    <section id="projects" class="min-h-screen py-32 w-full flex items-center justify-center px-6 md:px-12">
+      <div class="max-w-7xl w-full flex flex-col gap-16">
+
+        <div class="flex flex-col gap-2">
+          <p class="font-mono text-xs text-zinc-600 tracking-widest uppercase">// 02. SELECTED WORKS</p>
+          <h2 class="text-2xl sm:text-4xl md:text-5xl font-display font-bold tracking-tight text-white">Featured
+            Projects</h2>
         </div>
-      </div>
-    </div>
 
-    <div
-      id="contact"
-      class="min-h-[50vh] py-20 w-screen flex items-center justify-center"
-    >
-      <div class="w-[90%] md:w-[80%] flex flex-col items-center gap-12">
-        <h1
-          class="text-3xl font-bold bg-gradient-to-r from-purple-500 via-blue-500 to-pink-500 bg-clip-text text-transparent"
-        >
-          Get In Touch
-        </h1>
-        <div
-          class="flex flex-col lg:flex-row w-full items-center justify-between gap-12"
-        >
-          <div
-            class="w-full lg:w-1/3 flex flex-col gap-8 text-center lg:text-left"
-          >
-            <h1 class="text-white text-4xl font-bold leading-tight">
-              Let's talk about your project
-            </h1>
-            <div class="flex flex-col gap-4">
-              <div
-                class="flex items-center justify-center lg:justify-start gap-4 text-white"
-              >
-                <i
-                  class="fa-solid fa-envelope text-blue-400 bg-[#1d2b53] p-4 rounded-full border border-blue-500"
-                ></i>
-                <p class="font-semibold">shoxruxsayidov4@gmail.com</p>
+        <!-- Editorial List Layout (With cursor image hover reveals) -->
+        <div class="project-list flex flex-col w-full border-t border-white/10 mt-6">
+
+          <!-- Project 1 -->
+          <div class="project-item py-10 flex flex-col md:flex-row md:items-center justify-between cursor-pointer group"
+            data-image="image/Gemini_Generated_Image_3uw2e33uw2e33uw2.png"
+            data-url="https://anonim-404-art.github.io/PersonalPortfolio/">
+            <div class="flex flex-col md:flex-row md:items-center gap-4">
+              <div class="flex items-center gap-6">
+                <span class="font-mono text-xs text-zinc-600 group-hover:text-white transition-colors">01</span>
+                <h3
+                  class="project-title text-xl sm:text-2xl md:text-3xl lg:text-4xl font-display font-bold text-zinc-500 group-hover:text-white">
+                  Personal Portfolio</h3>
               </div>
-              <div
-                class="flex items-center justify-center lg:justify-start gap-4 text-white"
-              >
-                <i
-                  class="fa-solid fa-phone text-red-400 bg-[#1d2b53] p-4 rounded-full border border-red-500"
-                ></i>
-                <p class="font-semibold">+60 11 6816 8759</p>
+              <!-- Mobile Inline Image Preview -->
+              <img class="block md:hidden w-full h-48 object-cover rounded-xl mt-4 border border-white/10"
+                src="image/Gemini_Generated_Image_3uw2e33uw2e33uw2.png" alt="Preview" />
+            </div>
+            <div class="flex items-center gap-6 mt-4 md:mt-0 justify-between md:justify-end">
+              <span class="font-mono text-[10px] text-zinc-600 uppercase tracking-wider">Tailwind // JS // Vite</span>
+              <div class="flex gap-4">
+                <a target="_blank" href="https://anonim-404-art.github.io/PersonalPortfolio/"
+                  class="hover:text-white transition-colors text-xs font-mono">// DEMO</a>
+                <a target="_blank" href="https://github.com/anonim-404-art/PersonalPortfolio.git"
+                  class="hover:text-white transition-colors text-xs font-mono">// CODE</a>
               </div>
             </div>
           </div>
-          <form
-            id="form"
-            class="w-full lg:w-[60%] bg-[#1d2b53] p-6 md:p-10 rounded-3xl border border-[#324287] flex flex-col gap-6"
-          >
-            <input
-              type="hidden"
-              name="access_key"
-              value="f6bac5a8-8a14-419e-abc1-c1129b541198"
-            />
-            <div class="flex flex-col md:flex-row gap-6">
-              <input
-                type="text"
-                name="name"
-                placeholder="Name"
-                class="w-full md:w-1/2 p-4 rounded-xl bg-[#314068] text-white outline-none focus:ring-2 ring-blue-500 transition-all"
-                required
-              />
-              <input
-                type="email"
-                name="email"
-                placeholder="Email"
-                class="w-full md:w-1/2 p-4 rounded-xl bg-[#314068] text-white outline-none focus:ring-2 ring-blue-500 transition-all"
-                required
-              />
+
+          <!-- Project 2 -->
+          <div class="project-item py-10 flex flex-col md:flex-row md:items-center justify-between cursor-pointer group"
+            data-image="image/355_1x_shots_so.png" data-url="https://e-commerce-production-4be2.up.railway.app">
+            <div class="flex flex-col md:flex-row md:items-center gap-4">
+              <div class="flex items-center gap-6">
+                <span class="font-mono text-xs text-zinc-600 group-hover:text-white transition-colors">02</span>
+                <h3
+                  class="project-title text-xl sm:text-2xl md:text-3xl lg:text-4xl font-display font-bold text-zinc-500 group-hover:text-white">
+                  LUXE E-Commerce</h3>
+              </div>
+              <!-- Mobile Inline Image Preview -->
+              <img class="block md:hidden w-full h-48 object-cover rounded-xl mt-4 border border-white/10"
+                src="image/355_1x_shots_so.png" alt="Preview" />
             </div>
-            <textarea
-              name="message"
-              placeholder="Message"
-              rows="5"
-              class="w-full p-4 rounded-xl bg-[#314068] text-white outline-none resize-none focus:ring-2 ring-blue-500"
-              required
-            ></textarea>
-            <button
-              type="submit"
-              id="submit-btn_form"
-              class="w-full h-14 rounded-xl bg-gradient-to-r from-[#6F50A5] to-blue-600 text-white font-bold text-lg hover:scale-[1.02] transition-all"
-            >
-              Send Message
-            </button>
-            <p id="result" class="text-center"></p>
-          </form>
+            <div class="flex items-center gap-6 mt-4 md:mt-0 justify-between md:justify-end">
+              <span class="font-mono text-[10px] text-zinc-600 uppercase tracking-wider">Flask // PostgreSQL //
+                Python</span>
+              <div class="flex gap-4">
+                <a target="_blank" href="https://e-commerce-production-4be2.up.railway.app"
+                  class="hover:text-white transition-colors text-xs font-mono">// DEMO</a>
+                <a target="_blank" href="https://github.com/anonim-404-art/E-Commerce.git"
+                  class="hover:text-white transition-colors text-xs font-mono">// CODE</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Project 3 -->
+          <div class="project-item py-10 flex flex-col md:flex-row md:items-center justify-between cursor-pointer group"
+            data-image="image/unnamed.jpg" data-url="https://anonim-404-art.github.io/WeatherWeb/">
+            <div class="flex flex-col md:flex-row md:items-center gap-4">
+              <div class="flex items-center gap-6">
+                <span class="font-mono text-xs text-zinc-600 group-hover:text-white transition-colors">03</span>
+                <h3
+                  class="project-title text-xl sm:text-2xl md:text-3xl lg:text-4xl font-display font-bold text-zinc-500 group-hover:text-white">
+                  Weather Dashboard</h3>
+              </div>
+              <!-- Mobile Inline Image Preview -->
+              <img class="block md:hidden w-full h-48 object-cover rounded-xl mt-4 border border-white/10"
+                src="image/unnamed.jpg" alt="Preview" />
+            </div>
+            <div class="flex items-center gap-6 mt-4 md:mt-0 justify-between md:justify-end">
+              <span class="font-mono text-[10px] text-zinc-600 uppercase tracking-wider">JavaScript // Weather
+                API</span>
+              <div class="flex gap-4">
+                <a target="_blank" href="https://anonim-404-art.github.io/WeatherWeb/"
+                  class="hover:text-white transition-colors text-xs font-mono">// DEMO</a>
+                <a target="_blank" href="https://github.com/anonim-404-art/WeatherWeb"
+                  class="hover:text-white transition-colors text-xs font-mono">// CODE</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Project 4 -->
+          <div class="project-item py-10 flex flex-col md:flex-row md:items-center justify-between cursor-pointer group"
+            data-image="image/244_1x_shots_so.png" data-url="https://anonim-404-art.github.io/moviefestival/">
+            <div class="flex flex-col md:flex-row md:items-center gap-4">
+              <div class="flex items-center gap-6">
+                <span class="font-mono text-xs text-zinc-600 group-hover:text-white transition-colors">04</span>
+                <h3
+                  class="project-title text-xl sm:text-2xl md:text-3xl lg:text-4xl font-display font-bold text-zinc-500 group-hover:text-white">
+                  Cinetic Movies</h3>
+              </div>
+              <!-- Mobile Inline Image Preview -->
+              <img class="block md:hidden w-full h-48 object-cover rounded-xl mt-4 border border-white/10"
+                src="image/244_1x_shots_so.png" alt="Preview" />
+            </div>
+            <div class="flex items-center gap-6 mt-4 md:mt-0 justify-between md:justify-end">
+              <span class="font-mono text-[10px] text-zinc-600 uppercase tracking-wider">JavaScript // Web3Forms</span>
+              <div class="flex gap-4">
+                <a target="_blank" href="https://anonim-404-art.github.io/moviefestival/"
+                  class="hover:text-white transition-colors text-xs font-mono">// DEMO</a>
+                <a target="_blank" href="https://github.com/anonim-404-art/moviefestival.git"
+                  class="hover:text-white transition-colors text-xs font-mono">// CODE</a>
+              </div>
+            </div>
+          </div>
+
         </div>
       </div>
-    </div>
+    </section>
 
-    <footer
-      class="w-screen py-10 flex justify-center bg-[#0F1C3F] text-gray-600 border-t border-[#1d2b53]"
-    >
-      <p>© 2025 Shokhrukh. All rights reserved.</p>
-    </footer>
-    <script src="message.js"></script>
-    <script src="main.js"></script>
-  </body>
+    <!-- Contact Section -->
+    <section id="contact"
+      class="min-h-screen py-32 w-full flex items-center justify-center px-6 md:px-12 bg-white/[0.005] border-t border-white/5">
+      <div class="max-w-7xl w-full flex flex-col gap-16">
+
+        <div class="flex flex-col gap-2">
+          <p class="font-mono text-xs text-zinc-600 tracking-widest uppercase">// 03. INQUIRIES</p>
+          <h2 class="text-2xl sm:text-4xl md:text-5xl font-display font-bold tracking-tight text-white">Get In Touch
+          </h2>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-16">
+
+          <!-- Contact Info (Span 5) -->
+          <div class="lg:col-span-5 flex flex-col gap-8">
+            <h3 class="text-3xl font-display font-bold leading-tight text-white">Let's build something beautiful
+              together.</h3>
+            <p class="text-zinc-500 leading-relaxed text-sm">
+              Have an idea, project, or general inquiry? Feel free to send a message. I'm responsive and look forward to
+              hearing from you.
+            </p>
+
+            <!-- Quick Contacts -->
+            <div class="flex flex-col gap-6 pt-4">
+              <div class="flex flex-col gap-1">
+                <span class="text-[10px] font-mono text-zinc-600 uppercase tracking-wider">// Email Me</span>
+                <a href="mailto:shoxruxsayidov4@gmail.com"
+                  class="font-semibold text-white hover:text-neon-blue transition-colors text-sm">shoxruxsayidov4@gmail.com</a>
+              </div>
+
+              <div class="flex flex-col gap-1">
+                <span class="text-[10px] font-mono text-zinc-600 uppercase tracking-wider">// Call / WhatsApp</span>
+                <a href="tel:+601168168759"
+                  class="font-semibold text-white hover:text-neon-blue transition-colors text-sm">+60 11 6816 8759</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Contact Form (Span 7) -->
+          <div class="lg:col-span-7">
+            <form id="form" class="flex flex-col gap-8">
+              <!-- Web3forms access key -->
+              <input type="hidden" name="access_key" value="f6bac5a8-8a14-419e-abc1-c1129b541198" />
+
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-8">
+                <div class="flex flex-col gap-2">
+                  <label class="font-mono text-[10px] text-zinc-600 uppercase tracking-widest">Your Name</label>
+                  <input type="text" name="name" required placeholder="John Doe" class="minimal-input" />
+                </div>
+
+                <div class="flex flex-col gap-2">
+                  <label class="font-mono text-[10px] text-zinc-600 uppercase tracking-widest">Your Email</label>
+                  <input type="email" name="email" required placeholder="john@example.com" class="minimal-input" />
+                </div>
+              </div>
+
+              <div class="flex flex-col gap-2">
+                <label class="font-mono text-[10px] text-zinc-600 uppercase tracking-widest">Message</label>
+                <textarea name="message" required rows="4" placeholder="Hello Shokhrukh, let's collaborate on..."
+                  class="minimal-input resize-none"></textarea>
+              </div>
+
+              <button type="submit" id="submit-btn_form"
+                class="w-full h-14 border border-white/20 hover:border-white hover:bg-white hover:text-black font-mono text-xs tracking-widest uppercase transition-all duration-300 mt-4 cursor-pointer">
+                Send Message
+              </button>
+            </form>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer
+    class="relative z-10 w-full py-12 border-t border-white/5 bg-[#030014] text-zinc-600 flex justify-center text-center">
+    <div class="max-w-7xl w-full px-6 flex flex-col sm:flex-row items-center justify-between gap-6">
+      <p class="text-[10px] font-mono tracking-wider">© 2026 SHOKHRUKH. ALL RIGHTS RESERVED.</p>
+      <div class="flex gap-6 text-[10px] font-mono tracking-wider">
+        <a href="https://github.com/anonim-404-art" target="_blank"
+          class="hover:text-white transition-colors">GITHUB</a>
+        <a href="mailto:shoxruxsayidov4@gmail.com" class="hover:text-white transition-colors">EMAIL</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script type="module" src="message.js"></script>
+  <script type="module" src="main.js"></script>
+</body>
+
 </html>
